@@ -41,15 +41,15 @@ class Clip {
   }
   
   public void display(){
-    PVector screenDirection = new PVector(cos(rotY+HALF_PI)*sin(HALF_PI-rotX), cos(HALF_PI-rotX), sin(rotY+HALF_PI)*sin(HALF_PI-rotX)); // Não me pergunte, foi tentativa e erro kkk.
+    PVector screenDirection = new PVector(cos(cameraRotY+HALF_PI)*sin(HALF_PI-cameraRotX), cos(HALF_PI-cameraRotX), sin(cameraRotY+HALF_PI)*sin(HALF_PI-cameraRotX)); // Não me pergunte, foi tentativa e erro kkk.
     float apontandoParaTelaOuNao = PVector.dot(this.centerDirection, screenDirection);
-    if(apontandoParaTelaOuNao > cos(radians(10)) && transZ > 0){ 
+    if(apontandoParaTelaOuNao > cos(radians(10)) && cameraTransZ > 0){ 
       if (movie.available()) {
         this.movie.read();
       }
       this.movie.play();
-      if(transZ > 200) this.movieSpeed = 2;
-      else this.movieSpeed = 2*(transZ)/200;
+      if(cameraTransZ > 200) this.movieSpeed = 2;
+      else this.movieSpeed = 2*(cameraTransZ)/200;
       this.movie.speed(this.movieSpeed);
     } else{
       this.movie.pause();

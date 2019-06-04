@@ -1,8 +1,8 @@
 import processing.video.*;
 
-float rotX = 0;
-float rotY = 0;
-float transZ = 0;
+float cameraRotX = 0;
+float cameraRotY = 0;
+float cameraTransZ = 0;
 Sphere sphere;
 
 void setup() {
@@ -17,23 +17,23 @@ void draw() {
 }
 
 void setCamera(){
-  translate(width/2, height/2, transZ);
-  rotateX(rotX);
-  rotateY(rotY);
+  translate(width/2, height/2, cameraTransZ);
+  rotateX(cameraRotX);
+  rotateY(cameraRotY);
 }
 
 void mouseDragged() {
   if(mouseButton == LEFT){
-    rotX = (rotX - (mouseY - pmouseY)*PI/height)%TWO_PI;
-    rotY = (rotY + (mouseX - pmouseX)*PI/width)%TWO_PI;
+    cameraRotX = (cameraRotX - (mouseY - pmouseY)*PI/height)%TWO_PI;
+    cameraRotY = (cameraRotY + (mouseX - pmouseX)*PI/width)%TWO_PI;
   }
 }
 
 void mouseWheel(MouseEvent event) {
   if(event.getCount() < 0){
-    transZ = transZ + 10;
+    cameraTransZ = cameraTransZ + 10;
   }else{
-    transZ = transZ - 10;
+    cameraTransZ = cameraTransZ - 10;
   }
-  println("transZ: "+transZ);
+  println("cameraTransZ: "+cameraTransZ);
 }
