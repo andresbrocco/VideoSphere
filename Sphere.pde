@@ -5,6 +5,9 @@ class Sphere {
   private float[] startingFi = new float[nClipsInLayer.length];
   private float[] theta = new float[nClipsInLayer.length];
   private Clip[] clips;
+  public float cameraRotX = 0;
+  public float cameraRotY = 0;
+  public float cameraTransZ = 0;
     
   Sphere (PApplet pApplet, float clipDensity) {// clipDensity:Percentage of sphere area covered with clips.
     int totalNumberOfClips = 0;
@@ -30,8 +33,16 @@ class Sphere {
   }
   
   public void display() {
+    background(0);
+    this.setCamera();
     for(Clip clip:this.clips){
       clip.display();
     }
+  }
+  
+  private void setCamera(){
+    translate(width/2, height/2, this.cameraTransZ);
+    rotateX(this.cameraRotX);
+    rotateY(this.cameraRotY);
   }
 }
